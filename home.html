@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body class="background-img">
+<nav>
+  <div class="nav-container">
+    <div class="nav-section">
+      <ul>
+        <li><a href="home.html">Home</a></li>
+      </ul>
+    </div>
+    <div class="nav-section">
+      <ul>
+        <li><a href="income.html">Income</a></li>
+      </ul>
+    </div>
+    <div class="nav-section">
+      <ul>
+        <li><a href="outcome.html">Outcome</a></li>
+      </ul>
+    </div>
+    <div class="nav-section">
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<h2>Home</h2>
+
+<h3>Income History</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+  <tbody id="incomeHistory">
+    <!-- Income history items will be added here dynamically -->
+  </tbody>
+</table>
+
+<h3>Outcome History</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+  <tbody id="outcomeHistory">
+    <!-- Outcome history items will be added here dynamically -->
+  </tbody>
+</table>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    displayIncomeHistory();
+    displayOutcomeHistory();
+});
+
+function displayIncomeHistory() {
+    var incomeHistory = JSON.parse(localStorage.getItem("incomeHistory")) || [];
+    var incomeHistoryTable = document.getElementById("incomeHistory");
+
+    incomeHistory.forEach(function(item) {
+        var row = incomeHistoryTable.insertRow(-1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        cell1.textContent = item.description;
+        cell2.textContent = "$" + item.amount;
+    });
+}
+
+function displayOutcomeHistory() {
+    var outcomeHistory = JSON.parse(localStorage.getItem("outcomeHistory")) || [];
+    var outcomeHistoryTable = document.getElementById("outcomeHistory");
+
+    outcomeHistory.forEach(function(item) {
+        var row = outcomeHistoryTable.insertRow(-1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        cell1.textContent = item.description;
+        cell2.textContent = "$" + item.amount;
+    });
+}
+</script>
+
+</body>
+</html>
